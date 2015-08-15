@@ -21,6 +21,11 @@ defmodule HelloPhoenix.UserTest do
     assert {:bio, {"should be at least %{count} characters", [count: 2]}} in errors_on(%User{}, attrs)
   end
 
+  test "bio must be at most 140 characters long" do
+    attrs = %{@valid_attrs | bio: long_string(141)}
+    assert {:bio, {"should be at most %{count} characters", [count: 140]}} in errors_on(%User{}, attrs)
+  end
+
   test "number_of_pets is not required" do
     changeset = User.changeset(%User{}, Map.delete(@valid_attrs, :number_of_pets))
     assert changeset.valid?
