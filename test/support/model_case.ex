@@ -49,4 +49,8 @@ defmodule HelloPhoenix.ModelCase do
   def errors_on(model, data) do
     model.__struct__.changeset(model, data).errors
   end
+
+  def long_string(length) do
+    Enum.reduce (0..length), "", fn _, acc ->  acc <> "a" end
+  end
 end
