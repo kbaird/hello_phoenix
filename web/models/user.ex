@@ -10,8 +10,8 @@ defmodule HelloPhoenix.User do
     timestamps
   end
 
-  @required_fields ~w(name email bio number_of_pets)
-  @optional_fields ~w()
+  @required_fields ~w(name email bio)
+  @optional_fields ~w(number_of_pets)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
