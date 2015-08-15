@@ -18,8 +18,7 @@ defmodule HelloPhoenix.UserTest do
 
   test "bio must be at least two characters long" do
     attrs = %{@valid_attrs | bio: "I"}
-    changeset = User.changeset(%User{}, attrs)
-    refute changeset.valid?
+    assert {:bio, {"should be at least %{count} characters", [count: 2]}} in errors_on(%User{}, attrs)
   end
 
   test "number_of_pets is not required" do
