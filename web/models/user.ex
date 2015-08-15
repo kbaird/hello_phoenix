@@ -23,5 +23,6 @@ defmodule HelloPhoenix.User do
     model
     |> cast(params, @required_fields, @optional_fields)
     |> validate_length(:bio, min: 2)
+    |> validate_length(:bio, max: 140)
   end
 end
