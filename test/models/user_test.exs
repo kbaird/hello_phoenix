@@ -26,6 +26,11 @@ defmodule HelloPhoenix.UserTest do
     assert {:bio, {"should be at most %{count} characters", [count: 140]}} in errors_on(%User{}, attrs)
   end
 
+  test "email must contain at least an @" do
+    attrs = %{@valid_attrs | email: "fooexample.com"}
+    assert {:email, "has invalid format"} in errors_on(%User{}, attrs)
+  end
+
   test "number_of_pets is not required" do
     changeset = User.changeset(%User{}, Map.delete(@valid_attrs, :number_of_pets))
     assert changeset.valid?
