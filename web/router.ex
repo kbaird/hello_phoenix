@@ -26,7 +26,7 @@ defmodule HelloPhoenix.Router do
   # Other scopes may use custom stacks.
   scope "/api", HelloPhoenix do
     pipe_through :api
-  
+
     resources "/zoidbergs", ZoidbergController
   end
 end
