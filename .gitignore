@@ -1,3 +1,4 @@
+/start_app.sh
 /_build
 /deps
 erl_crash.dump
