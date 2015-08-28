@@ -20,12 +20,13 @@ defmodule HelloPhoenix.Router do
     get "/hello",            HelloController, :index
     get "/hello/:messenger", HelloController, :show
 
+    resources "/reviews", ReviewController
     resources "/users", UserController do
       resources "/post", PostController
     end
   end
 
-  scope "/admin" do
+  scope "/admin", as: :admin do
     pipe_through :browser # Use the default browser stack
 
     resources "/reviews", HelloPhoenix.Admin.ReviewController
