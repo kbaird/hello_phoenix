@@ -26,10 +26,12 @@ defmodule HelloPhoenix.Router do
     end
   end
 
-  scope "/admin", as: :admin do
+  scope "/admin", HelloPhoenix.Admin, as: :admin do
     pipe_through :browser # Use the default browser stack
 
-    resources "/reviews", HelloPhoenix.Admin.ReviewController
+    resources "/images",  ImageController
+    resources "/reviews", ReviewController
+    resources "/users",   UserController
   end
 
   # Other scopes may use custom stacks.
