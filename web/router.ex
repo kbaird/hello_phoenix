@@ -25,6 +25,12 @@ defmodule HelloPhoenix.Router do
     end
   end
 
+  scope "/admin" do
+    pipe_through :browser # Use the default browser stack
+
+    resources "/reviews", HelloPhoenix.Admin.ReviewController
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", HelloPhoenix do
   #   pipe_through :api
