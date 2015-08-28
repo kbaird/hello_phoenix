@@ -9,10 +9,6 @@ defmodule HelloPhoenix.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   scope "/", HelloPhoenix do
     pipe_through :browser # Use the default browser stack
 
@@ -20,27 +16,42 @@ defmodule HelloPhoenix.Router do
     get "/hello",            HelloController, :index
     get "/hello/:messenger", HelloController, :show
 
-    resources "/reviews", ReviewController
     resources "/users", UserController do
       resources "/post", PostController
     end
   end
 
-  scope "/admin", HelloPhoenix.Admin, as: :admin do
-    pipe_through :browser # Use the default browser stack
+  pipeline :review_checks do
+    # TODO: would need to implement
+    #plug :ensure_authenticated_user
+    #plug :ensure_user_owns_review
+  end
 
-    resources "/images",  ImageController
+  scope "/reviews", HelloPhoenix do
+    pipe_through :review_checks
+
     resources "/reviews", ReviewController
-    resources "/users",   UserController
   end
 
-  scope "/api", HelloPhoenix.Api, as: :api do
-    pipe_through :api
+  #pipeline :api do
+  #  plug :accepts, ["json"]
+  #end
 
-    scope "/v1", V1, as: :v1 do
-      resources "/images",  ImageController
-      resources "/reviews", ReviewController
-      resources "/users",   UserController
-    end
-  end
+  #scope "/admin", HelloPhoenix.Admin, as: :admin do
+  #  pipe_through :browser # Use the default browser stack
+
+  #  resources "/images",  ImageController
+  #  resources "/reviews", ReviewController
+  #  resources "/users",   UserController
+  #end
+
+  #scope "/api", HelloPhoenix.Api, as: :api do
+  #  pipe_through :api
+
+  #  scope "/v1", V1, as: :v1 do
+  #    resources "/images",  ImageController
+  #    resources "/reviews", ReviewController
+  #    resources "/users",   UserController
+  #  end
+  #end
 end
