@@ -1,6 +1,4 @@
-# HelloPhoenix
-
-[![Build Status](https://semaphoreci.com/api/v1/projects/6ced9f40-d45e-46b8-90f7-3774866830c7/524970/badge.svg)](https://semaphoreci.com/kbaird/hello_phoenix)
+# HelloPhoenix [![Build Status](https://semaphoreci.com/api/v1/projects/6ced9f40-d45e-46b8-90f7-3774866830c7/524970/badge.svg)](https://semaphoreci.com/kbaird/hello_phoenix)
 
 To start your Phoenix app:
 
