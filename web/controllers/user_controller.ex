@@ -1,5 +1,6 @@
 defmodule HelloPhoenix.UserController do
   use HelloPhoenix.Web, :controller
+  use HelloPhoenix.DeletesViaRepoServer
 
   alias HelloPhoenix.User
 
@@ -54,8 +55,7 @@ defmodule HelloPhoenix.UserController do
   end
 
   def delete(conn, %{"id" => id}) do
-    {:ok, pid} = GenServer.start_link(HelloPhoenix.RepoServer, [User, id])
-    result     = GenServer.call(pid, :delete!)
+    result = delete_via_repo_server(User, id)
 
     case result do
       :deleted -> conn
