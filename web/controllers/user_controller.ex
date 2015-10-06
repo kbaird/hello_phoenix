@@ -54,14 +54,14 @@ defmodule HelloPhoenix.UserController do
   end
 
   def delete(conn, %{"id" => id}) do
-    user = Repo.get!(User, id)
+    {:ok, pid} = GenServer.start_link(HelloPhoenix.RepoServer, [User, id])
+    result     = GenServer.call(pid, :delete!)
 
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
-    Repo.delete!(user)
-
-    conn
-    |> put_flash(:info, "User deleted successfully.")
-    |> redirect(to: user_path(conn, :index))
+    case result do
+      :deleted -> conn
+                  |> put_flash(:info, "User deleted successfully.")
+                  |> redirect(to: user_path(conn, :index))
+      _        -> throw("deletion of User #{id} failed.")
+    end
   end
 end
