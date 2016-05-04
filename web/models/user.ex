@@ -7,7 +7,7 @@ defmodule HelloPhoenix.User do
     field :bio, :string
     field :number_of_pets, :integer
 
-    timestamps
+    timestamps      
   end
 
   @required_fields ~w(name email bio)
