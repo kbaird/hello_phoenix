@@ -33,3 +33,9 @@ config :hello_phoenix, HelloPhoenix.Repo,
   password: System.get_env("DB_PASSWORD"),
   database: "hello_phoenix_dev",
   size:     10 # The amount of database connections in the pool
+
+config :dogma,
+  override: %{
+    LineLength => [ max_length: 115 ],
+    ModuleDoc  => false,
+  }

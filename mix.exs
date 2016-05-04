@@ -35,7 +35,9 @@ defmodule HelloPhoenix.Mixfile do
       { :postgrex,            ">= 0.0.0"           },
       { :phoenix_html,        "~> 2.0"             },
       { :phoenix_live_reload, "~> 1.0", only: :dev },
-      { :cowboy,              "~> 1.0"             }
+      { :cowboy,              "~> 1.0"             },
+      { :credo,               "~> 0.2", only: [:dev, :test] },
+      { :dogma,               "~> 0.0", only: :dev }
     ]
   end
 end

@@ -6,6 +6,10 @@ defmodule HelloPhoenix.UserTest do
   @valid_attrs %{bio: "my life", email: "pat@example.com", name: "Pat Example", number_of_pets: 4}
   @invalid_attrs %{}
 
+  test "impossible" do
+    assert true == false
+  end
+
   test "changeset with valid attributes" do
     changeset = User.changeset(%User{}, @valid_attrs)
     assert changeset.valid?
